@@ -1,0 +1,32 @@
+List data = [
+  {
+    "relative":"夫",
+  },
+  {
+    "relative":"妻",
+  },
+  {
+    "relative":"父",
+  },
+  {
+    "relative":"母",
+  },
+  {
+    "relative":"兄",
+  },
+  {
+    "relative":"弟",
+  },
+  {
+    "relative":"姐",
+  },
+  {
+    "relative":"妹",
+  },
+  {
+    "relative":"子",
+  },
+  {
+    "relative":"女",
+  },
+];
