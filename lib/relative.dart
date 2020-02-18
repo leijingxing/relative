@@ -9,7 +9,7 @@ class Relative extends StatefulWidget {
 
 class _RelativeState extends State<Relative> {
   List list = new List<String>();
-  List two = new List();
+  String str = '';
   String chenghu = '';
 
   @override
@@ -31,8 +31,7 @@ class _RelativeState extends State<Relative> {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: Container(
+      body:  Container(
           padding: EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
@@ -58,13 +57,14 @@ class _RelativeState extends State<Relative> {
                   setState(() {
                     list.clear();
                     chenghu = '';
+                    str = '';
                   });
                 },
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.5,
                 child: GridView.count(
-                  crossAxisCount: 4,
+                  crossAxisCount: 5,
                   padding: EdgeInsets.all(5),
                   crossAxisSpacing: 1,
                   mainAxisSpacing: 1,
@@ -83,14 +83,22 @@ class _RelativeState extends State<Relative> {
                         ),
                       ),
                       onTap: () {
-                        setState(() {
-                          list.add("的" + data[index]['relative']);
-                          two.add(data[index]['id']);
-                          chenghu = data[index]['relation'];
-                          if(two.length == 2) {
-                            print('hello');
+                        list.add("的" + data[index]['relative']);
+                        str = str + data[index]['id'];
+
+                        for (int i = 0; i < call.length; i++) {
+                          if (str.endsWith(call[i]['id'])) {
+                            print(str);
+                            print(call[i]['id']);
+                            chenghu = call[i]['relative'];
                           }
-                        });
+                        }
+
+                        if(chenghu == '') {
+                          chenghu = '男的叫帅哥，女的叫美女';
+                        }
+
+                        setState(() {});
                       },
                     );
                   }),
@@ -99,11 +107,9 @@ class _RelativeState extends State<Relative> {
                   color: Colors.greenAccent,
                 ),
               ),
-
             ],
           ),
         ),
-      ),
-    );
+     );
   }
 }
