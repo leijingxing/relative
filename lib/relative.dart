@@ -9,7 +9,8 @@ class Relative extends StatefulWidget {
 
 class _RelativeState extends State<Relative> {
   List list = new List<String>();
-  List chenghu = new List();
+  List two = new List();
+  String chenghu = '';
 
   @override
   void initState() {
@@ -36,17 +37,32 @@ class _RelativeState extends State<Relative> {
           child: Column(
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: MediaQuery.of(context).size.height * 0.1,
                 child: Text(
                   "我\n" + "${list.toString()}",
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: Text("称呼:\n" + "${chenghu.toString()}"),
+                height: MediaQuery.of(context).size.height * 0.1,
+                child: Text("称呼:\n" + "$chenghu"),
+              ),
+              RaisedButton(
+                child: Text(
+                  "清除",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                color: Colors.greenAccent,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                onPressed: () {
+                  setState(() {
+                    list.clear();
+                    chenghu = '';
+                  });
+                },
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.35,
+                height: MediaQuery.of(context).size.height * 0.5,
                 child: GridView.count(
                   crossAxisCount: 4,
                   padding: EdgeInsets.all(5),
@@ -69,11 +85,10 @@ class _RelativeState extends State<Relative> {
                       onTap: () {
                         setState(() {
                           list.add("的" + data[index]['relative']);
-                          print(data[index]['id']);
-                          if (data[index]['id']
-                              .toString()
-                              .endsWith(data[index]['id'].toString())) {
-                            chenghu.add(data[index]['relation']);
+                          two.add(data[index]['id']);
+                          chenghu = data[index]['relation'];
+                          if(two.length == 2) {
+                            print('hello');
                           }
                         });
                       },
@@ -84,21 +99,7 @@ class _RelativeState extends State<Relative> {
                   color: Colors.greenAccent,
                 ),
               ),
-              RaisedButton(
-                child: Text(
-                  "清除",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                color: Colors.greenAccent,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                onPressed: () {
-                  setState(() {
-                    list.clear();
-                    chenghu.clear();
-                  });
-                },
-              ),
+
             ],
           ),
         ),
